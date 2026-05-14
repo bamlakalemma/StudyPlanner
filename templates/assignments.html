@@ -1,0 +1,32 @@
+
+{%extends 'base.html' %}
+{%block content %}
+
+    {% if assignments %}
+        <div class="table-container">
+            <table class="table is-striped is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>title</th>
+                        <th>description</th>
+                        <th>due date</th>
+                        <th>course</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for assignment in assignments %}
+                    <tr>
+                        <td>{{ assignment.title }}</td>
+                        <td>{{ assignment.description }}</td>
+                        <td>{{ assignment.due_date }}</td>
+                        <td>{{ assignment.course }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No assignments yet.</p>
+    {% endif %}
+  <a class="button is-primary" href="{% url 'add_assignment' %}">Add Assignment</a>
+{%endblock content %}

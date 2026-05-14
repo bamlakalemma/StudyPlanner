@@ -1,0 +1,31 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Study Planner</title>
+    <link rel="stylesheet" href="{% static 'bulma.min.css' %}">
+</head>
+<body>
+<div data-theme="dark">
+<section class="section">
+  <div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-menu is-active">
+        <div class="navbar-start">
+          <a class="navbar-item" href="{% url 'home' %}">Home</a>
+          <a class="navbar-item" href="{% url 'profiles' %}">Accounts</a>
+          <a class="navbar-item" href="{% url 'assignments' %}">Assignments</a>
+          <a class="navbar-item" href="{% url 'courses' %}">Courses</a>
+          <a class="navbar-item" href="{% url 'planner' %}">Planner</a>
+        </div>
+      </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+  </div>
+</section>
+</div>
+</body>
+</html>

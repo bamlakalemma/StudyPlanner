@@ -1,0 +1,36 @@
+{%extends 'base.html' %}
+{%block content %}
+  
+    {% if tasks %}
+        <div class="table-container">
+            <table class="table is-striped is-fullwidth">
+                <thead>
+                    <tr>
+                        
+                        <th>Task</th>
+                        <th>Description</th>
+                        <th>Planned Date</th>
+                        <th>Duration (hours)</th>
+                        <th>Course</th>
+                        <th>Completed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.title }}</td>
+                        <td>{{ task.description }}</td>
+                        <td>{{ task.planned_date }}</td>
+                        <td>{{ task.duration }}</td>
+                        <td>{{ task.related_assignment }}</td>
+                        <td>{{ task.completed }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No study tasks yet.</p>
+    {% endif %}
+      <a class="button is-primary" href="{% url 'add_task' %}">Add Study Task</a>
+{%endblock content %}
