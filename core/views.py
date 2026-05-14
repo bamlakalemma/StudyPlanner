@@ -1,4 +1,3 @@
 from django.views.generic import TemplateView
-
-class LandingPageView(TemplateView):
-  template_name = 'base.html'
+class HomePageView(TemplateView):
+    template_name = 'homepage.html'

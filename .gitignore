@@ -1,25 +1,83 @@
-# Python
+# Byte-compiled / cache
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Django
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Environment variables
+.env
+.env.*
+
+# Django stuff
 *.log
 local_settings.py
 db.sqlite3
-/media
-/staticfiles
+db.sqlite3-journal
 
-# Environments
-venv/
-.env
-.venv/
+# Static & media files
+staticfiles/
+media/
 
-# VS Code
+# Migrations (optional)
+# Uncomment if you do NOT want migrations tracked
+# */migrations/
+# !*/migrations/__init__.py
+
+# Collected static files
+static/
+
+# IDEs and editors
 .vscode/
+.idea/
 
 # macOS
 .DS_Store
 
 # Windows
 Thumbs.db
+
+# Testing / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Type checking
+.mypy_cache/
+.pyre/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Build files
+build/
+dist/
+*.egg-info/
+
+# pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Secrets / keys
+*.pem
+*.key
+
+# Logs
+logs/
+*.log
