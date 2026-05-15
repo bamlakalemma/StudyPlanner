@@ -25,4 +25,6 @@ urlpatterns = [
     path('assignments/',include('assignments.urls')),
     path('courses/',include('courses.urls')),
     path('planner/',include('planner.urls')),
+    path('profile/',TemplateView.as_view(template_name='profile.html'), name='profile'),
+    
 ]

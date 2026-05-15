@@ -1,31 +1,44 @@
-{% load static %} 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Study Planner</title>
-    <link rel="stylesheet" href="{% static 'bulma.min.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Study Planner</title>
+  <link rel="stylesheet" href="{% static 'bulma.min.css' %}">
 </head>
+
 <body>
-<div data-theme="dark">
-<section class="section">
-  <div class="container">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-menu is-active">
-        <div class="navbar-start">
-          <a class="navbar-item" href="{% url 'home' %}">Home</a>
-          <a class="navbar-item" href="{% url 'profiles' %}">Accounts</a>
-          <a class="navbar-item" href="{% url 'assignments' %}">Assignments</a>
-          <a class="navbar-item" href="{% url 'courses' %}">Courses</a>
-          <a class="navbar-item" href="{% url 'planner' %}">Planner</a>
-        </div>
+  <div data-theme="dark">
+    <section class="section">
+      <div class="container">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+          <div class="navbar-menu is-active">
+            <div class="navbar-start">
+              <a class="navbar-item" href="{% url 'home' %}">Home</a>
+              <a class="navbar-item" href="{% url 'profile' %}">Accounts</a>
+              <a class="navbar-item" href="{% url 'assignments' %}">Assignments</a>
+              <a class="navbar-item" href="{% url 'courses' %}">Courses</a>
+              <a class="navbar-item" href="{% url 'planner' %}">Planner</a>
+              {% if user.is_authenticated %}
+              <a href="{% url 'profile' %}">Profile</a>
+              <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+              {% else %}
+              <a href="{% url 'login' %}">Login</a>
+              <a href="{% url 'signup' %}">Signup</a>
+              {% endif %}
+            </div>
+          </div>
+        </nav>
+        {% block content %}
+        {% endblock %}
       </div>
-    </nav>
-    {% block content %}
-    {% endblock %}
+    </section>
   </div>
-</section>
-</div>
 </body>
+
 </html>
