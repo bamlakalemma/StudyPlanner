@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 
 # Create your models here.
 class Course(models.Model):
@@ -7,7 +8,7 @@ class Course(models.Model):
     course_code = models.CharField(max_length=10)
     instructor = models.CharField(max_length=100)
     semester = models.CharField(max_length=20)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

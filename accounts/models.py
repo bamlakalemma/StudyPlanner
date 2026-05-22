@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 # Create your models here.
 
 YEAR_CHOICES = [
@@ -10,7 +11,7 @@ YEAR_CHOICES = [
 ]
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     field_of_study = models.CharField(max_length=100)
     year_of_study = models.IntegerField(choices=YEAR_CHOICES)
     profile_picture = models.ImageField(upload_to='profiles/', blank=True, null=True)
@@ -18,3 +19,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+class CustomUser(AbstractUser):
+    major = models.CharField(max_length=100)
+    year_of_study = models.IntegerField(blank=True, null=True)
+    profile_picture = models.ImageField(upload_to='profiles/', blank=True, null=True)
+    
