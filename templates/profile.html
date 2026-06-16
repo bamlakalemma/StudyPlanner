@@ -2,22 +2,18 @@
 
 {% block content %}
 
-<h2>Profile</h2>
-<p>Log in to see profile</p>
-
-
-
 {% if user.profile %}
-    <p>Welcome, {{ user.username }}!</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Field of Study: {{ user.profile.field_of_study }}</p>
-    <p>Year of Study: {{ user.profile.year_of_study }}</p>
-    <form method="POST" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
+<p>Welcome, {{ user.username }}!</p>
+<p>Email: {{ user.email }}</p>
+<p>Field of Study: {{ user.profile.field_of_study }}</p>
+<p>Year of Study: {{ user.profile.year_of_study }}</p>
+
+{% else %}
+<p>Welcome, {{ user.username }}!</p>
+<p>Email: {{ user.email }}</p>
+<p>Field of Study: {{ user.profile.field_of_study }}</p>
+<p>Year of Study: {{ user.profile.year_of_study }}</p>
+
+<p>Please complete your profile information.</p> 
 {% endif %}
-
-
-
 {% endblock %}

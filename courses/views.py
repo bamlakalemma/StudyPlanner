@@ -24,3 +24,27 @@ def add_course(request):
         form = CourseForm()
     
     return render(request, 'courses/add_course.html', {'form': form})
+
+@login_required
+def edit_course(request, course_id):
+    course = Course.objects.get(id=course_id, owner=request.user)
+    
+    if request.method == 'POST':
+        form = CourseForm(request.POST, instance=course)
+        if form.is_valid():
+            form.save()
+            return redirect('courses')
+    else:
+        form = CourseForm(instance=course)
+    
+    return render(request, 'courses/edit_course.html', {'form': form, 'course': course})
+
+@login_required
+def delete_course(request, course_id):
+    course = Course.objects.get(id=course_id, owner=request.user)
+    
+    if request.method == 'POST':
+        course.delete()
+        return redirect('courses')
+    
+    return render(request, 'courses/delete_course.html', {'course': course})

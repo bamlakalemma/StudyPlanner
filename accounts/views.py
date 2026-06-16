@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Profile
 from .forms import SignupForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -25,3 +26,10 @@ def signup_view(request):
         form = SignupForm()
 
     return render(request, 'accounts/signup.html', {'form': form})
+
+
+@login_required
+def admin_dashboard(request):
+    if not request.user.is_staff:
+        return HttpResponse("Unauthorized Access")
+    return render(request, 'admin_dashboard.html')

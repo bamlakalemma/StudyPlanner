@@ -9,7 +9,7 @@
                 <th>Title</th>
                 <th>Semester</th>
                 <th>Instructor</th>
-                <th>&nbsp;</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +19,10 @@
                 <td>{{ course.title }}</td>
                 <td>{{ course.semester }}</td>
                 <td>{{ course.instructor }}</td>
+                <td>
+                    <a class="button is-small is-info" href="{% url 'edit_course' course.id %}">Edit</a>
+                    <a class="button is-small is-danger" href="{% url 'delete_course' course.id %}">Delete</a>
+                </td>
             </tr>
             {% empty %}
             <tr>

@@ -11,6 +11,7 @@
                         <th>description</th>
                         <th>due date</th>
                         <th>course</th>
+                        <th>actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,6 +21,12 @@
                         <td>{{ assignment.description }}</td>
                         <td>{{ assignment.due_date }}</td>
                         <td>{{ assignment.course }}</td>
+                        {% if assignment.owner == user %}
+                        <td>
+                            <a class="button is-small is-info" href="{% url 'edit_assignment' assignment.id %}">Edit</a>
+                            <a class="button is-small is-danger" href="{% url 'delete_assignment' assignment.id %}">Delete</a>
+                        </td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>

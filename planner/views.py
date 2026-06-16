@@ -23,3 +23,27 @@ def add_studytask(request):
     else:
         form = StudyTaskForm()
     return render(request, 'tasks/add_task.html', {'form': form})
+
+@login_required
+def edit_studytask(request, task_id):
+    task = StudyTask.objects.get(id=task_id, owner=request.user)
+    
+    if request.method == 'POST':
+        form = StudyTaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('planner')
+    else:
+        form = StudyTaskForm(instance=task)
+    
+    return render(request, 'tasks/edit_task.html', {'task': task, 'form': form})
+
+@login_required
+def delete_studytask(request, task_id):
+    task = StudyTask.objects.get(id=task_id, owner=request.user)
+    
+    if request.method == 'POST':
+        task.delete()
+        return redirect('planner')
+    
+    return render(request, 'tasks/delete_task.html', {'task': task})

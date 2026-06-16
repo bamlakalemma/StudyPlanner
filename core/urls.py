@@ -26,5 +26,6 @@ urlpatterns = [
     path('courses/',include('courses.urls')),
     path('planner/',include('planner.urls')),
     path('profile/',TemplateView.as_view(template_name='profile.html'), name='profile'),
+    path('admin-dashboard/', TemplateView.as_view(template_name='admin_dashboard.html'), name='admin_dashboard'),
     
 ]

@@ -13,6 +13,7 @@
                         <th>Duration (hours)</th>
                         <th>Course</th>
                         <th>Completed</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,6 +25,10 @@
                         <td>{{ task.duration }}</td>
                         <td>{{ task.related_assignment }}</td>
                         <td>{{ task.completed }}</td>
+                        <td>
+                            <a class="button is-small is-info" href="{% url 'edit_task' task.id %}">Edit</a>
+                            <a class="button is-small is-danger" href="{% url 'delete_task' task.id %}">Delete</a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
