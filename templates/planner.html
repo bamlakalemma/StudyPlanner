@@ -2,11 +2,14 @@
 {%block content %}
   
     {% if tasks %}
-        <div class="table-container">
-            <table class="table is-striped is-fullwidth">
-                <thead>
-                    <tr>
-                        
+    <a href="?mode=daily">Daily View</a>
+    <a href="?mode=weekly">Weekly View</a>
+    <p>Current View: {{ mode }}</p>
+    <div class="table-container">
+        <table class="table is-striped is-fullwidth">
+            <thead>
+                <tr>
+                    
                         <th>Task</th>
                         <th>Description</th>
                         <th>Planned Date</th>

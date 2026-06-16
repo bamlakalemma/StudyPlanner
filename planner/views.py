@@ -8,7 +8,8 @@ from django.shortcuts import render, redirect
 @login_required
 def StudyTaskListView(request):
     tasks = StudyTask.objects.filter(owner=request.user)
-    return render(request, 'planner.html', {'tasks': tasks})
+    mode = request.session.get('planner_mode', 'weekly')
+    return render(request, 'planner.html', {'tasks': tasks, 'mode': mode})
 
 
 @login_required
@@ -47,3 +48,8 @@ def delete_studytask(request, task_id):
         return redirect('planner')
     
     return render(request, 'tasks/delete_task.html', {'task': task})
+
+def set_view_mode(request):
+    mode = request.GET.get('mode')
+    request.session['planner_mode'] = mode
+    return redirect('planner')
